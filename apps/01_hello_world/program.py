@@ -7,7 +7,7 @@ greeting = 'Nice to meet you ' + user_text
 
 print(greeting)
 
-# TODO: First test for the TODO-function.
+# TODO: First test for the TODO-function in PyCharm.
 
 
 
