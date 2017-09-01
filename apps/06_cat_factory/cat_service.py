@@ -11,7 +11,7 @@ def get_cat(folder, name):
 
 
 def get_data_from_url(url):
-    response = requests.get(url, stream=True)  #stream=True för att 'aktivera' streamingmode, behövs när man arbetar med raw-data.
+    response = requests.get(url, stream=True)
     return response.raw  # Returnerar en binary string av bilden
 
 def save_image(folder, name, data):
