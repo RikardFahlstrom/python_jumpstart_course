@@ -26,7 +26,7 @@ def get_or_create_output_folder():
     #print(full_path)
 
     if not os.path.exists(full_path) or not os.path.isdir(full_path):
-        print('Creating new directory at {}'.format(full_path)) # För att visa om mappen redan finns eller om den skapas.
+        print('Creating new directory at {}'.format(full_path))
         os.mkdir(full_path)
 
     return full_path
