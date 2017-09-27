@@ -9,31 +9,35 @@ def print_header():
 
 
 def get_birthday_from_user():
-    print('Please enter your birthday information: ')
-    year = input('Enter year [YYY]: ')
-    month = input('Enter month [MM]: ')
-    day = input('Enter date [DD]: ')
+    try:
+        print('Please enter your birthday information: ')
+        year = int(input('Enter year [YYY]: '))
+        month = int(input('Enter month [MM]: '))
+        day = int(input('Enter date [DD]: '))
 
-    birthday = datetime.datetime(int(year), int(month), int(day))
-    #  print(birthday)
+        birthday = datetime.date(year, month, day)
+        return birthday
 
-    return birthday
+    except ValueError:
+        print('Error: Incorrect date')
+        exit()
 
 
-def compute_days_between_dates(original_date, now):
-    date1 = now
-    date2 = datetime.datetime(now.year, original_date.month, original_date.day)
+def compute_days_between_dates(original_date, current_date):
+    date1 = current_date
+    date2 = datetime.date(current_date.year, original_date.month, original_date.day)
     dt = date1 - date2
-    days = dt.total_seconds() / 60 / 60 / 24
 
-    return int(days)
+    return dt.days
 
 
-def print_birthday_information(days):
+def print_birthday_information(days, bday, current_date):
     if days < 0:
         print('Your birthday is in {} days!'.format(-days))
+    elif bday.year > current_date.year:
+        print("You are not born yet!")
     elif days > 0:
-        print('Your birthday was {} ago!'.format(days))
+        print('Your birthday was {} days ago!'.format(days))
     else:
         print('Happy Birthday!!!')
 
@@ -41,8 +45,9 @@ def print_birthday_information(days):
 def main():
     print_header()
     bday = get_birthday_from_user()
-    now = datetime.datetime.now()
-    number_of_days = compute_days_between_dates(bday, now)
-    print_birthday_information(number_of_days)
+    current_date = datetime.date.today()
+    number_of_days = compute_days_between_dates(bday, current_date)
+    print_birthday_information(number_of_days, bday, current_date)
+
 
 main()
